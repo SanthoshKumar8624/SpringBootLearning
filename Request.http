@@ -1,0 +1,7 @@
+POST http://localhost:8081/employees
+Content-Type: application/json
+
+{
+  "name": "vicky",
+  "role": "Software Engineer"
+}
