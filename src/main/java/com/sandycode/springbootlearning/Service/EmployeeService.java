@@ -2,6 +2,7 @@ package com.sandycode.springbootlearning.Service;
 
 import com.sandycode.springbootlearning.DTO.EmployeeDTO;
 import com.sandycode.springbootlearning.Entity.Employee;
+import com.sandycode.springbootlearning.Exception.EmployeeNotFoundException;
 import com.sandycode.springbootlearning.Respository.EmployeeRespository;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,7 @@ public class EmployeeService {
     public EmployeeDTO getById(Integer id) {
         Optional<Employee> optional = repository.findById(id);
         if (optional.isEmpty()) {
-            throw new RuntimeException("Employee not found");
+            throw new EmployeeNotFoundException(id);
         }
         Employee employee = optional.get();
         return toDTO(employee);
@@ -84,7 +85,7 @@ public class EmployeeService {
         Optional<Employee> optional = repository.findById(id);
 
         if (optional.isEmpty()) {
-            throw new RuntimeException("Employee not found");
+            throw new EmployeeNotFoundException(id);
         }
 
         Employee existing = optional.get();
@@ -98,7 +99,7 @@ public class EmployeeService {
     // DELETE
     public void delete(Integer id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Employee not found");
+            throw new EmployeeNotFoundException(id);
         }
         repository.deleteById(id);
     }
