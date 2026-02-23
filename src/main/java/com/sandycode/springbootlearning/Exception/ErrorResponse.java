@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class ErrorResponse {
-    private String message;
-    private int status;
-    private LocalDateTime timestamp;
+    private final String message;
+    private final int status;
+    private final LocalDateTime timestamp;
     private Map<String, String> errorDetails;
 
     ErrorResponse(String message, int status) {
