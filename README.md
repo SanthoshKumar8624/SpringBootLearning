@@ -6,15 +6,15 @@ Client
   v
 Spring Boot (Jackson)
   |
-  |  Converts JSON → EmployeeDTO Object
+  |  Converts JSON → EmployeeRequestDTO object
   v
 Controller
   |
-  |  Passes DTO
+  |  Passes RequestDTO
   v
 Service Layer
   |
-  |  Converts DTO → Employee Entity
+  |  Converts RequestDTO → Employee Entity
   v
 Repository (JPA)
   |
@@ -39,11 +39,11 @@ Repository
   v
 Service Layer
   |
-  |  Converts Entity → EmployeeDTO
+  |  Converts Entity → EmployeeResponseDTO
   v
 Controller
   |
-  |  Jackson Converts DTO → JSON
+  |  Jackson Converts EmployeeResponseDTO object → JSON
   v
 Client (Browser / Postman / Frontend)
 
@@ -51,7 +51,7 @@ Client (Browser / Postman / Frontend)
 Layer Responsibility
 ```
 Controller  → Handles HTTP + JSON conversion
-Service     → Business logic + DTO <--> Entity mapping
+Service     → Business logic + (EmployeeRequestDTO --> Entity mapping) + ( Entity mapping --> EmployeeResponseDTO)
 Repository  → Database interaction
 Database    → Stores persistent data
 ```
