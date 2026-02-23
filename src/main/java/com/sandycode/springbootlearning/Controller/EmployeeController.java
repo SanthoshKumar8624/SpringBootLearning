@@ -1,7 +1,9 @@
 package com.sandycode.springbootlearning.Controller;
 
-import com.sandycode.springbootlearning.DTO.EmployeeDTO;
+import com.sandycode.springbootlearning.DTO.EmployeeRequestDTO;
+import com.sandycode.springbootlearning.DTO.EmployeeResponseDTO;
 import com.sandycode.springbootlearning.Service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,31 +19,31 @@ public class EmployeeController {
 
     // GET ALL
     @GetMapping
-    public List<EmployeeDTO> getAll() {
+    public List<EmployeeResponseDTO> getAll() {
         return employeeService.getAll();
     }
 
     // GET BY ID
     @GetMapping("/{id}")
-    public EmployeeDTO getById(@PathVariable Integer id) {
+    public EmployeeResponseDTO getById(@PathVariable Integer id) {
         return employeeService.getById(id);
     }
 
     // POST
     @PostMapping
-    public EmployeeDTO insert(@RequestBody EmployeeDTO dto) {
+    public EmployeeResponseDTO insert(@Valid @RequestBody EmployeeRequestDTO dto) {
         return employeeService.insert(dto);
     }
 
     // POST ALL
     @PostMapping("/all")
-    public List<EmployeeDTO> insertAll(@RequestBody List<EmployeeDTO> dtos) {
+    public List<EmployeeResponseDTO> insertAll(@RequestBody List<EmployeeRequestDTO> dtos) {
         return employeeService.insertAll(dtos);
     }
 
     // PUT
     @PutMapping("/{id}")
-    public EmployeeDTO update(@PathVariable Integer id, @RequestBody EmployeeDTO dto) {
+    public EmployeeResponseDTO update(@PathVariable Integer id, @RequestBody EmployeeRequestDTO dto) {
         return employeeService.update(id, dto);
     }
 
